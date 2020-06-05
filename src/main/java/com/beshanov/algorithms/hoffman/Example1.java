@@ -4,7 +4,7 @@ package com.beshanov.algorithms.hoffman;
 import java.util.*;
 
 /**
- * По данной непустой строке ss длины не более 10^4, состоящей из строчных букв латинского алфавита, постройте оптимальный
+ * По данной непустой строке s длины не более 10^4, состоящей из строчных букв латинского алфавита, постройте оптимальный
  * беспрефиксный код. В первой строке выведите количество различных букв k, встречающихся в строке, и размер получившейся
  * закодированной строки. В следующих k строках запишите коды букв в формате "letter: code". В последней строке выведите закодированную строку.
  */
@@ -15,7 +15,7 @@ public class Example1 {
     }
 
     private void run() {
-        PriorityQueue priorityQueue = new PriorityQueue();
+        //Создаём мапу частотности из введенного текста
         Map<String, Integer> map = new HashMap<>();
         Scanner sc = new Scanner(System.in);
         String inputString = sc.nextLine();
@@ -29,6 +29,8 @@ public class Example1 {
             }
         }
 
+        //Наполняем очередь с приоритетами значениями из мапы
+        PriorityQueue priorityQueue = new PriorityQueue();
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             Element element = new Element();
             element.value = entry.getKey();
@@ -39,6 +41,7 @@ public class Example1 {
         int n = map.size();
         System.out.print(n + " ");
 
+        //строим двоичное дерево: в конечном итоге единственный элемент в очереди - корень дерева
         for (int i = n + 1; i <= 2 * n - 1; i++) {
             Element firstMin = priorityQueue.extractMin();
             Element secondMin = priorityQueue.extractMin();
@@ -50,8 +53,10 @@ public class Example1 {
         }
 
         Element currentElement = priorityQueue.extractMin();
-
+        //Проходимся по дереву и формируем мапу с кодами Хоффмана для листьев
         Map<String, String> codeMap = processBinaryTree(currentElement, new HashMap<>(), "");
+
+        //Вывод результатов
         StringBuilder encodedString = new StringBuilder();
         for (String letter : lettersArray) {
             encodedString.append(codeMap.get(letter));
