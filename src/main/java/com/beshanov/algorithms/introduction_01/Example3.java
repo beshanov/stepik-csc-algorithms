@@ -1,4 +1,4 @@
-package com.beshanov.algorithms.introduction;
+package com.beshanov.algorithms.introduction_01;
 
 import java.util.Scanner;
 

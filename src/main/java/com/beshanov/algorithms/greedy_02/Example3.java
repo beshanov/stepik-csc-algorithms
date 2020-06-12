@@ -1,4 +1,4 @@
-package com.beshanov.algorithms.greedy;
+package com.beshanov.algorithms.greedy_02;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package com.beshanov.algorithms.hoffman;
+package com.beshanov.algorithms.hoffman_03;
 
 import java.util.HashMap;
 import java.util.Map;
